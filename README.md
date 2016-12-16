@@ -38,3 +38,5 @@ Unmount nfs shares via. pillar using the following parameters:
 testing
 ================
 Load the included Vagrantfile. Once all machines are up, execute `salt-call state.sls nfs.mount` to test client mounts. Server exports are done during the vagrant provisioning.
+
+The Vagrant environment will have three machines in it, with hostnames `centos`, `debian`, and `ubuntu`.
