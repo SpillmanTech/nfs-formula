@@ -16,3 +16,5 @@ base:
   '*':
     - pillar" | sudo tee /srv/pillar/top.sls
 sudo cp $SRCDIR/salt-top.example /srv/salt/top.sls
+sudo mkdir -p /srv/homes
+sudo touch /srv/homes/testfile
