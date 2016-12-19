@@ -1,11 +1,23 @@
 nfs:
   server:
     exports: 
-      /srv/homes: "hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)"
+      /srv/homes: "*(rw,fsid=0,sync)"
   mount:
-    somename:
-      mountpoint: "/some/path"
-      location: "hostname:/path"
+    debianhome:
+      mountpoint: "/srv/mapped-homes/debian"
+      location: "debian:/srv/homes"
+      opts: "vers=3,rsize=65535,wsize=65535"
+      persist: True
+      mkmnt: True
+    ubuntuhome:
+      mountpoint: "/srv/mapped-homes/ubuntu"
+      location: "ubuntu:/srv/homes"
+      opts: "vers=3,rsize=65535,wsize=65535"
+      persist: True
+      mkmnt: True
+    centoshome:
+      mountpoint: "/srv/mapped-homes/centos"
+      location: "centos:/srv/homes"
       opts: "vers=3,rsize=65535,wsize=65535"
       persist: True
       mkmnt: True
