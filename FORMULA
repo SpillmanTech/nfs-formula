@@ -1,0 +1,8 @@
+name: nfs
+os: RedHat, CentOS, Ubuntu, Debian
+os_family: RedHat, Debian
+version: 201702
+release: 1
+summary: Salt and test nfs server and client mounts
+description: Salt and test nfs server and client mounts
+top_level_dir: nfs
