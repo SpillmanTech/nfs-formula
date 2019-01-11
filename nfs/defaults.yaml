@@ -12,3 +12,4 @@ nfs:
   pkgs_client:
     - nfs-common
   service_name: nfs-kernel-server
+  service_server_dependency: False
