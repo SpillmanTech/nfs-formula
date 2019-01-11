@@ -2,7 +2,7 @@
 
 {#  FreeBSD has everything needed for NFS w/o any
     additional pkgs, so pkgs_server == False #}
-{% if nfs.pkgs_server %}
+{% if nfs.pkgs_server != None %}
 nfs-server-deps:
     pkg.installed:
         - pkgs: {{ nfs.pkgs_server|json }}
