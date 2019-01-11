@@ -5,6 +5,7 @@ nfs:
   persist_unmount: False
   exports_file: '/etc/exports'
   export_template: 'salt://nfs/templates/exports'
+  systemd_mount_template: 'salt://nfs/templates/systemd'
   # for most Linux distributions:
   pkgs_server:
     - nfs-common

@@ -1,0 +1,15 @@
+{%- from "nfs/map.jinja" import nfs with context %}
+[Unit]
+Description = Mount for {{ m.mountpoint }}
+
+[Mount]
+What={{ m.location }}
+Where={{ m.mountpoint }}
+Type=nfs
+{# Not every platform needs options #}
+{%- if 'opts' in m or nfs.mount_opts %}
+Options={{ m.opts|default(nfs.mount_opts) }}
+{% endif %}      
+
+[Install]
+WantedBy=multi-user.target
