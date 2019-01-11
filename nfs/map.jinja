@@ -1,24 +1,26 @@
-{% set map = {
-    'default': {
-        'pkgs_server': ['nfs-common', 'nfs-kernel-server'],
-        'pkgs_client': ['nfs-common'],
-        'service_server_dependency': False,
-        'service_server': 'nfs-kernel-server',
-        'service_client': False,
-    },
-    'FreeBSD': {
-        'pkgs_client': False,
-        'pkgs_server': False,
-        'service_server': 'nfsd',
-        'service_client': False,
-    },
-    'RedHat': {
-        'pkgs_server': ['nfs-utils'],
-        'pkgs_client': ['nfs-utils'],
-        'service_server_dependency': 'rpcbind',
-        'service_server': 'nfs',
-        'service_client': 'rpcbind',
-    },
-} %}
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
 
-{% set nfs = salt['grains.filter_by'](map, merge=salt['pillar.get']('nfs:lookup'), base='default') %}
+{## Start with  defaults from defaults.yaml ##}
+{% import_yaml 'nfs/defaults.yaml' as defaults %}
+{% import_yaml 'nfs/osfamilymap.yaml' as osfamilymap %}
+{% import_yaml 'nfs/osmap.yaml' as osmap %}
+{% import_yaml 'nfs/osfingermap.yaml' as osfingermap %}
+
+{% set nfs = salt['grains.filter_by'](
+    defaults,
+    merge = salt['grains.filter_by'](
+        osfamilymap,
+        grain='os_family',
+        merge = salt['grains.filter_by'](
+            osmap,
+            grain='os',
+            merge = salt['grains.filter_by'](
+                osfingermap,
+                merge = salt['pillar.get']('nfs', {}),
+            ),
+        ),
+    ),
+    base='nfs')
+%}
+
