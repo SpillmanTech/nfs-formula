@@ -4,7 +4,3 @@ Fedora:
   pkgs_client: ['nfs-utils']
   service_name: 'nfs'
 
-Container by CoreOS:
-  pkgs_server: None
-  pkgs_client: None
-  service_name: ['rpc-mountd', 'nfsd']

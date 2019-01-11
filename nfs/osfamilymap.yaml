@@ -9,6 +9,11 @@ Arch:
   pkgs_client: ['nfs-utils']
   service_name: 'nfs-server'
 
+Container by CoreOS:
+  pkgs_server: None
+  pkgs_client: None
+  service_name: ['rpc-mountd', 'nfsd']
+
 OpenBSD:
   pkgs_server: None
   pkgs_client: None
