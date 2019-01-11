@@ -13,3 +13,4 @@ nfs:
     - nfs-common
   service_name: nfs-kernel-server
   service_server_dependency: False
+  service_client: False
